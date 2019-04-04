@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get '/signup', to: "users#create"
-      # get '/profile', to: "users#show"
+      # get '/profile', to: "users#profile"
+      resources :playlists,  only: [:index, :create, :show, :patch, :delete] do
+        resources :clips, only: [:create]
+      end
     end
   end
 end
