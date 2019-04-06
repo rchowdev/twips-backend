@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       get '/signup', to: "users#create"
       # get '/profile', to: "users#profile"
       resources :playlists,  only: [:index, :create, :show, :patch, :delete] do
-        resources :clips, only: [:create]
+        resources :clips, only: [:index, :create]
       end
     end
   end

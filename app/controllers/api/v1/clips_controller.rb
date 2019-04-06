@@ -1,4 +1,8 @@
 class Api::V1::ClipsController < ApplicationController
+  def index
+    
+  end
+
   def create
     @playlist = Playlist.all.find(params.require(:playlist_id))
     @clip = Clip.new(clip_params)
@@ -14,5 +18,9 @@ class Api::V1::ClipsController < ApplicationController
 
   def clip_params
     params.require(:clip).permit(:title, :broadcaster, :thumbnail, :twitch_tr_id)
+  end
+
+  def find_playlist
+    @playlist = Playlist.find(params[:playlist_id])
   end
 end
