@@ -1,10 +1,15 @@
 class Api::V1::ClipsController < ApplicationController
+  before_action :find_playlist, only: [:index, :create]
+
   def index
-    
+    if @playlist
+      render json: { name: @playlist.name, clips: @playlist.clips }, status: :ok
+    else
+      render json: { error: "Playlist Not Found "}
+    end
   end
 
   def create
-    @playlist = Playlist.all.find(params.require(:playlist_id))
     @clip = Clip.new(clip_params)
     if !@playlist.clips.map{|clip| clip.twitch_tr_id}.include?(@clip.twitch_tr_id) #Checks to see if clip is in playlist already
       @playlist.clips << @clip

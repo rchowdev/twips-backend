@@ -1,6 +1,6 @@
 class Api::V1::PlaylistsController < ApplicationController
   def index
-    @playlists = Playlist.all
+    @playlists = Playlist.all.sort_by(&:updated_at)
     render json: @playlists #Serializer?
   end
 
@@ -13,14 +13,6 @@ class Api::V1::PlaylistsController < ApplicationController
     end
   end
 
-  def show
-    @playlist = Playlist.find(params[:id])
-    if @playlist
-      render json: PlaylistSerializer.new(@playlist), status: :ok
-    else
-      render json: { error: "Not Found"}
-    end
-  end
   private
 
   def playlist_params
