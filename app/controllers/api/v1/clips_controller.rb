@@ -1,5 +1,5 @@
 class Api::V1::ClipsController < ApplicationController
-  before_action :find_playlist, only: [:index, :create]
+  before_action :find_playlist, only: [:index, :create, :destroy, :in_playlist]
 
   def index
     if @playlist
@@ -17,6 +17,15 @@ class Api::V1::ClipsController < ApplicationController
     else
       render json: { error: "Clip Not Added" }
     end
+  end
+
+  def destroy
+    Clip.destroy(@playlist.clips.find_by(twitch_tr_id: params[:id]).id)
+    render json: { message: "Deleted" }
+  end
+
+  def in_playlist
+    render json: { clipIsInPlaylist: @playlist.clips.map{|clip| clip.twitch_tr_id}.include?(params[:clip_id])}
   end
 
   private

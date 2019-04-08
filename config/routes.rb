@@ -4,8 +4,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       get '/signup', to: "users#create"
       # get '/profile', to: "users#profile"
-      resources :playlists,  only: [:index, :create, :patch, :delete] do
-        resources :clips, only: [:index, :create]
+      get '/playlists/:playlist_id/clips/:clip_id', to: "clips#in_playlist"
+      resources :playlists,  only: [:index, :create, :patch, :destroy] do
+        resources :clips, only: [:index, :create, :destroy]
       end
     end
   end
