@@ -3,7 +3,7 @@ class Api::V1::ClipsController < ApplicationController
 
   def index
     if @playlist
-      render json: { name: @playlist.name, clips: @playlist.clips }, status: :ok
+      render json: { id: @playlist.id, name: @playlist.name, clips: @playlist.clips }, status: :ok
     else
       render json: { error: "Playlist Not Found "}
     end
@@ -20,8 +20,8 @@ class Api::V1::ClipsController < ApplicationController
   end
 
   def destroy
-    Clip.destroy(@playlist.clips.find_by(twitch_tr_id: params[:id]).id)
-    render json: { message: "Deleted" }
+    @clip = Clip.destroy(@playlist.clips.find_by(twitch_tr_id: params[:id]).id)
+    render json: @clip
   end
 
   def in_playlist

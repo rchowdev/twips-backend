@@ -1,6 +1,6 @@
 class Api::V1::PlaylistsController < ApplicationController
   def index
-    @playlists = Playlist.all.sort_by(&:updated_at)
+    @playlists = Playlist.all.sort_by(&:updated_at).reverse
     render json: @playlists #Serializer?
   end
 
@@ -11,6 +11,19 @@ class Api::V1::PlaylistsController < ApplicationController
     else
       render json: { error: "Playlist not created" }
     end
+  end
+
+  def update
+    @playlist = Playlist.find(params[:id])
+    @playlist.update(playlist_params)
+
+    render json: PlaylistSerializer.new(@playlist)
+  end
+
+  def destroy 
+    @playlist = Playlist.destroy(params[:id])
+
+    render json: PlaylistSerializer.new(@playlist)
   end
 
   private
