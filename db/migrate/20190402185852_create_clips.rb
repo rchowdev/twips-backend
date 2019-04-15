@@ -7,7 +7,7 @@ class CreateClips < ActiveRecord::Migration[5.2]
       # t.string :game
       # t.integer :views
       t.string :thumbnail
-      # t.string :embed_html
+      t.string :embed_url
 
       t.timestamps
     end

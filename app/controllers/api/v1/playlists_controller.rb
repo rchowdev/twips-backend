@@ -1,11 +1,12 @@
 class Api::V1::PlaylistsController < ApplicationController
   def index
-    @playlists = Playlist.all.sort_by(&:updated_at).reverse
+    @playlists = current_user.playlists.sort_by(&:updated_at).reverse
     render json: @playlists #Serializer?
   end
 
   def create
     @playlist = Playlist.create(playlist_params)
+    current_user.playlists << @playlist
     if @playlist.valid?
       render json: PlaylistSerializer.new(@playlist), status: :created
     else
@@ -20,7 +21,7 @@ class Api::V1::PlaylistsController < ApplicationController
     render json: PlaylistSerializer.new(@playlist)
   end
 
-  def destroy 
+  def destroy
     @playlist = Playlist.destroy(params[:id])
 
     render json: PlaylistSerializer.new(@playlist)

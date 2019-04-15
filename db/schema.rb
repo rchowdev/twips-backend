@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2019_04_02_190738) do
     t.string "title"
     t.string "broadcaster"
     t.string "thumbnail"
+    t.string "embed_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -33,6 +34,7 @@ ActiveRecord::Schema.define(version: 2019_04_02_190738) do
 
   create_table "playlists", force: :cascade do |t|
     t.string "name"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

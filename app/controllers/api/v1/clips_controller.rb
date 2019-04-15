@@ -31,7 +31,7 @@ class Api::V1::ClipsController < ApplicationController
   private
 
   def clip_params
-    params.require(:clip).permit(:title, :broadcaster, :thumbnail, :twitch_tr_id)
+    params.require(:clip).permit(:title, :broadcaster, :thumbnail, :twitch_tr_id, :embed_url)
   end
 
   def find_playlist
