@@ -1,6 +1,9 @@
 # Twips
 Website that helps users manage their playlists of Twitch clips.
 
+<img src="https://i.imgur.com/LqgQniL.png" 
+alt="Twips" width="800" height="500" border="10" />
+
 ## Features
 * Ability to sign up as a new user or login as a current user
 * Get weekly top clips from Twitch
