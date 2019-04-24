@@ -10,6 +10,9 @@ alt="Twips" width="800" height="500" border="10" />
 * Create playlists of Twitch clips and add/remove clips to/from playlists
 * Search for weekly top clips by game or by channel
 
+<img src="https://i.imgur.com/HcD5p2A.png" 
+alt="Twips" width="800" height="500" border="10" />
+
 ## Setup
 Clone both of these repos: [backend repo](https://github.com/rchowdev/twips-backend) and [frontend repo](https://github.com/rchowdev/twips-frontend).
 Go to the root directory of twips-backend and run ```bundle install``` to install backend dependencies.
